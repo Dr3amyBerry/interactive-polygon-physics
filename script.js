@@ -246,40 +246,27 @@ function update() {
             // No collision, move full remaining distance
             ball.x += ball.vx * remainingTime;
             ball.y += ball.vy * remainingTime;
-            remainingTime = 0;
+            ball.vx = 0;
+            ball.vy = 0;
+            numSides = 3;
         }
-
-        iterations++;
     }
 
-    // Failsafe: Hard clamp if still outside
-    const distFromCenter = Math.sqrt(ball.x * ball.x + ball.y * ball.y);
-    // Approximate polygon boundary distance (using radius is a safe upper bound for corners, but apothem is lower)
-    // If we are WAY out, reset.
-    if (distFromCenter > polygonRadius + ball.radius + 100) {
-        ball.x = 0;
-        ball.y = 0;
-        ball.vx = 0;
-        ball.vy = 0;
-        numSides = 3;
+    function loop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Center coordinate system
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+
+        const vertices = getPolygonVertices(numSides, polygonRadius, centerX, centerY);
+
+        drawPolygon(vertices);
+        drawVertices(vertices);
+        update();
+        drawBall();
+
+        requestAnimationFrame(loop);
     }
-}
 
-function loop() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Center coordinate system
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
-
-    const vertices = getPolygonVertices(numSides, polygonRadius, centerX, centerY);
-
-    drawPolygon(vertices);
-    drawVertices(vertices);
-    update();
-    drawBall();
-
-    requestAnimationFrame(loop);
-}
-
-loop();
+    loop();
