@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+canvas {
+    display: block;
+}
+
+#controls {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: flex;
+    gap: 10px;
+}
+
+#controls:hover {
+    opacity: 1;
+}
+
+button {
+    background-color: black;
+    color: #00ccff;
+    border: 2px solid #00ccff;
+    padding: 10px 20px;
+    font-family: sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 10px #00ccff;
+    text-shadow: 0 0 5px #00ccff;
+    outline: none;
+}
+
+button:hover {
+    background-color: #00ccff;
+    color: black;
+}
