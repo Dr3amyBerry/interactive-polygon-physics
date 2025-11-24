@@ -1,6 +1,6 @@
 # 🔵 Interactive Polygon Physics / Física de Polígono Interactiva 🔴
 
-![Demo](demo.gif)
+![Demo](demo.webp)
 
 ## 🇬🇧 English
 
